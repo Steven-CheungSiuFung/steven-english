@@ -1,9 +1,13 @@
 <template>
   <div class="container">
-    <div class="open-sidebar-icon" @click.prevent="toggleSideBarOpen">
-      <Expand />
+    <div class="nav-wrapper">
+      <div class="open-sidebar-icon" @click.prevent="toggleSideBarOpen">
+        <Expand />
+      </div>
+      <div class="navbar-logo" @click.prevent="handleNavLink">
+        Steven English
+      </div>
     </div>
-    <p>nav bar</p>
   </div>
 </template>
 
@@ -26,6 +30,10 @@ export default {
   },
   methods: {
     ...mapActions(useSidebarStore, ["toggleSideBarOpen"]),
+    handleNavLink() {
+      const router = this.$router;
+      router.push({ name: "home" });
+    },
   },
 };
 </script>
@@ -35,8 +43,24 @@ export default {
   padding: 1rem;
 }
 
+.nav-wrapper {
+  width: 100%;
+  display: flex;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid black;
+}
+
 .open-sidebar-icon {
   width: 36px;
   height: 36px;
+}
+
+.navbar-logo {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-left: 8px;
+  text-decoration: none;
+  font-family: "Courgette", cursive;
 }
 </style>

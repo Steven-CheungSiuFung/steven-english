@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  isNavigationFailure,
+} from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
@@ -17,6 +21,14 @@ const router = createRouter({
       ],
     },
   ],
+});
+
+router.afterEach((to, from, failure) => {
+  if (isNavigationFailure(failure) && to.name !== from.name) {
+    console.log("failed navigation", failure);
+  } else {
+    console.log("navigation success");
+  }
 });
 
 export default router;

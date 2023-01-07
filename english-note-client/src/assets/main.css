@@ -1,5 +1,12 @@
 @import "./base.css";
 
+body {
+  background-image: url("./parchment.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 #app {
   width: 100%;
   margin: 0;
