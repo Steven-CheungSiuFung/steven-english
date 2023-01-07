@@ -2,14 +2,14 @@ import { defineStore } from "pinia";
 
 export default defineStore("sidebar", {
   state: () => ({
-    isOpen: true,
+    isSidebarOpen: true,
   }),
   getters: {
-    sideBarState: (state) => state.isOpen,
+    sideBarState: (state) => state.isSidebarOpen,
   },
   actions: {
     toggleSideBarOpen() {
-      this.isOpen = !this.isOpen;
+      this.isSidebarOpen = !this.isSidebarOpen;
     },
   },
 });

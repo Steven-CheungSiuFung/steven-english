@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="home-container">
     <div :class="['side-bar', isSideBarOpen && 'sidebar-opened']">
       <side-bar></side-bar>
     </div>
@@ -9,6 +9,11 @@
       <div v-if="this.$route.name == 'home'" class="cover-content-wrapper">
         <p v-for="item in coverContent" class="cover-content">{{ item }}</p>
       </div>
+      <div
+        v-show="isVocabCardOpen"
+        class="card-bg"
+        @click.prevent="setIsVocabCardOpen(false)"
+      ></div>
     </div>
   </div>
 </template>
@@ -19,6 +24,7 @@ import SideBar from "../components/SideBar.vue";
 
 import { mapActions, mapStores, mapState } from "pinia";
 import useSidebarStore from "@/stores/sideBar";
+import useVocabCardStore from "@/stores/vocabCard";
 
 import { coverContent } from "../../mock/mockData";
 
@@ -34,13 +40,17 @@ export default {
     SideBar,
   },
   computed: {
-    ...mapStores(useSidebarStore),
+    ...mapStores(useSidebarStore, useVocabCardStore),
     ...mapState(useSidebarStore, {
       isSideBarOpen: "sideBarState",
+    }),
+    ...mapState(useVocabCardStore, {
+      isVocabCardOpen: "getIsVocabCardOpen",
     }),
   },
   methods: {
     ...mapActions(useSidebarStore, ["toggleSideBarOpen"]),
+    ...mapActions(useVocabCardStore, ["setIsVocabCardOpen"]),
   },
   created() {
     this.coverContent = coverContent.content;
@@ -49,7 +59,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.home-container {
   display: flex;
 }
 
@@ -88,5 +98,16 @@ export default {
   font-size: 1.2rem;
   font-weight: 600;
   padding-bottom: 1rem;
+}
+
+.card-bg {
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.5;
 }
 </style>
