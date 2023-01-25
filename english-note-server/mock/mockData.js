@@ -1,4 +1,4 @@
-export const vocabList = [
+const vocabList = [
   {
     word: "resurgent",
     pos: "adjective",
@@ -19,9 +19,14 @@ export const vocabList = [
   },
 ];
 
-export const coverContent = {
+const coverContent = {
   content: [
     "You are the main character of your own story and the architect of your own happiness.",
     "Everyone else is simply a visitor.",
   ],
+};
+
+module.exports = {
+  vocabList,
+  coverContent,
 };

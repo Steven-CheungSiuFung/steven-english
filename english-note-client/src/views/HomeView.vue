@@ -25,35 +25,36 @@ import SideBar from "../components/SideBar.vue";
 import { mapActions, mapStores, mapState } from "pinia";
 import useSidebarStore from "@/stores/sideBar";
 import useVocabCardStore from "@/stores/vocabCard";
-
-import { coverContent } from "../../mock/mockData";
+import { useCoverStore } from "@/stores/cover";
 
 export default {
   name: "HomeView",
   data() {
-    return {
-      coverContent: [],
-    };
+    return {};
   },
   components: {
     NavBar,
     SideBar,
   },
   computed: {
-    ...mapStores(useSidebarStore, useVocabCardStore),
+    ...mapStores(useSidebarStore, useVocabCardStore, useCoverStore),
     ...mapState(useSidebarStore, {
       isSideBarOpen: "sideBarState",
     }),
     ...mapState(useVocabCardStore, {
       isVocabCardOpen: "getIsVocabCardOpen",
     }),
+    ...mapState(useCoverStore, {
+      coverContent: "getCoverContent",
+    }),
   },
   methods: {
     ...mapActions(useSidebarStore, ["toggleSideBarOpen"]),
     ...mapActions(useVocabCardStore, ["setIsVocabCardOpen"]),
+    ...mapActions(useCoverStore, ["getCoverContentHTTP"]),
   },
-  created() {
-    this.coverContent = coverContent.content;
+  async created() {
+    await this.getCoverContentHTTP();
   },
 };
 </script>
