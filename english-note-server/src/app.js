@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const vocabsRouter = require("./routes/vocabs/vocabs.router");
 const coverRouter = require("./routes/cover/cover.router");
@@ -12,6 +13,8 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "..", "public")));
+
 app.use("/vocabs", vocabsRouter);
 app.use("/cover", coverRouter);
 

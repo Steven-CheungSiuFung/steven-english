@@ -1,0 +1,19 @@
+{
+  "name": "english-note",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "cd english-note-server && npm install",
+    "install-client": "cd english-note-client && npm install",
+    "install": "npm run install-server && npm run install-client",
+    "server": "npm run watch --prefix english-note-server",
+    "client": "npm run dev --prefix english-note-client",
+    "watch": "npm run server & npm run client",
+    "deploy": "npm run build --prefix english-note-client && npm start --prefix english-note-server",
+    "test": "npm run test --prefix english-note-server && npm run test --prefix english-note-client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
