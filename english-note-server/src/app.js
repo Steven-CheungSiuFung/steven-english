@@ -18,4 +18,9 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.use("/vocabs", vocabsRouter);
 app.use("/cover", coverRouter);
 
+// serving application with client side routing
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+});
+
 module.exports = app;
