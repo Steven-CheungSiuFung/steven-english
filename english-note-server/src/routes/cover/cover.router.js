@@ -1,8 +1,8 @@
 const express = require("express");
-const { getCoverContent } = require("./cover.controller");
+const { httpGetCoverContent } = require("./cover.controller");
 
 const coverRouter = express.Router();
 
-coverRouter.get("/coverContent", getCoverContent);
+coverRouter.get("/coverContent", httpGetCoverContent);
 
 module.exports = coverRouter;

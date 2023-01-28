@@ -1,7 +1,9 @@
 const { coverContent } = require("../../mock/mockData");
 
-const content = coverContent.content;
+function getCoverContent() {
+  return coverContent.content;
+}
 
 module.exports = {
-  coverContent: content,
+  getCoverContent,
 };

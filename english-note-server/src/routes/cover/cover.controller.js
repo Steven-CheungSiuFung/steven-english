@@ -1,9 +1,9 @@
-const cover = require("../../models/cover.model");
+const { getCoverContent } = require("../../models/cover.model");
 
-function getCoverContent(req, res) {
-  return res.status(200).json(cover.coverContent);
+function httpGetCoverContent(req, res) {
+  return res.status(200).json(getCoverContent());
 }
 
 module.exports = {
-  getCoverContent,
+  httpGetCoverContent,
 };

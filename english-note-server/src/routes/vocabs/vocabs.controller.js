@@ -1,9 +1,9 @@
-const vocabs = require("../../models/vocabs.model");
+const { getCoverContent } = require("../../models/vocabs.model");
 
-function getAllVocabs(req, res) {
-  return res.status(200).json(vocabs);
+function httpGetAllVocabs(req, res) {
+  return res.status(200).json(getCoverContent());
 }
 
 module.exports = {
-  getAllVocabs,
+  httpGetAllVocabs,
 };

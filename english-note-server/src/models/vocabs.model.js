@@ -1,5 +1,9 @@
 const { vocabList } = require("../../mock/mockData");
 
-const vocabs = vocabList;
+function getCoverContent() {
+  return vocabList;
+}
 
-module.exports = vocabs;
+module.exports = {
+  getCoverContent,
+};
