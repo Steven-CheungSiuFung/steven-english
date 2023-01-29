@@ -1,4 +1,5 @@
 const express = require("express");
+const helmet = require("helmet");
 const cors = require("cors");
 const path = require("path");
 
@@ -6,6 +7,8 @@ const vocabsRouter = require("./routes/vocabs/vocabs.router");
 const coverRouter = require("./routes/cover/cover.router");
 
 const app = express();
+
+app.use(helmet());
 
 app.use(
   cors({
