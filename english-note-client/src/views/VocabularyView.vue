@@ -17,8 +17,7 @@
 
 <script>
 import { mapStores, mapActions, mapState } from "pinia";
-import useVocabCardStore from "@/stores/vocabCard";
-import useVocabsStore from "@/stores/vocabs";
+import { usePiniaStore } from "../stores";
 
 import VocabCard from "../components/VocabCard.vue";
 
@@ -28,21 +27,21 @@ export default {
   },
   components: { VocabCard },
   computed: {
-    ...mapStores(useVocabCardStore, useVocabsStore),
-    ...mapState(useVocabCardStore, {
+    ...mapStores(usePiniaStore.useVocabCardStore, usePiniaStore.useVocabsStore),
+    ...mapState(usePiniaStore.useVocabCardStore, {
       isVocabCardOpen: "getIsVocabCardOpen",
     }),
-    ...mapState(useVocabsStore, {
+    ...mapState(usePiniaStore.useVocabsStore, {
       vocabsList: "getVocabsList",
       isVocabsError: "getVocabsError",
     }),
   },
   methods: {
-    ...mapActions(useVocabCardStore, [
+    ...mapActions(usePiniaStore.useVocabCardStore, [
       "setIsVocabCardOpen",
       "setVocabCardContent",
     ]),
-    ...mapActions(useVocabsStore, ["getVocabsHTTP"]),
+    ...mapActions(usePiniaStore.useVocabsStore, ["getVocabsHTTP"]),
 
     handleCardOpen(item, event) {
       try {

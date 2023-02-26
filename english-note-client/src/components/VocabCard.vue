@@ -24,7 +24,7 @@
 
 <script>
 import { mapStores, mapActions, mapState } from "pinia";
-import useVocabCardStore from "@/stores/vocabCard";
+import { usePiniaStore } from "../stores";
 
 export default {
   data() {
@@ -43,8 +43,8 @@ export default {
     word: String,
   },
   computed: {
-    ...mapStores(useVocabCardStore),
-    ...mapState(useVocabCardStore, {
+    ...mapStores(usePiniaStore.useVocabCardStore),
+    ...mapState(usePiniaStore.useVocabCardStore, {
       isCardOpen: "getIsVocabCardOpen",
       cardData: "getVocabCardContent",
     }),
@@ -55,7 +55,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(useVocabCardStore, [
+    ...mapActions(usePiniaStore.useVocabCardStore, [
       "setIsVocabCardOpen",
       "setVocabCardContent",
     ]),

@@ -13,7 +13,7 @@
 
 <script>
 import { mapActions, mapStores, mapState } from "pinia";
-import useSidebarStore from "@/stores/sideBar";
+import { usePiniaStore } from "../stores";
 
 export default {
   name: "NavBar",
@@ -23,13 +23,13 @@ export default {
     };
   },
   computed: {
-    ...mapStores(useSidebarStore),
-    ...mapState(useSidebarStore, {
+    ...mapStores(usePiniaStore.useSideBarStore),
+    ...mapState(usePiniaStore.useSideBarStore, {
       isSideBarOpen: "sideBarState",
     }),
   },
   methods: {
-    ...mapActions(useSidebarStore, ["toggleSideBarOpen"]),
+    ...mapActions(usePiniaStore.useSideBarStore, ["toggleSideBarOpen"]),
     handleNavLink() {
       const router = this.$router;
       router.push({ name: "home" });

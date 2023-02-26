@@ -23,9 +23,7 @@ import NavBar from "../components/NavBar.vue";
 import SideBar from "../components/SideBar.vue";
 
 import { mapActions, mapStores, mapState } from "pinia";
-import useSidebarStore from "@/stores/sideBar";
-import useVocabCardStore from "@/stores/vocabCard";
-import { useCoverStore } from "@/stores/cover";
+import { usePiniaStore } from "../stores";
 
 export default {
   name: "HomeView",
@@ -37,21 +35,25 @@ export default {
     SideBar,
   },
   computed: {
-    ...mapStores(useSidebarStore, useVocabCardStore, useCoverStore),
-    ...mapState(useSidebarStore, {
+    ...mapStores(
+      usePiniaStore.useCoverStore,
+      usePiniaStore.useSideBarStore,
+      usePiniaStore.useVocabCardStore
+    ),
+    ...mapState(usePiniaStore.useSideBarStore, {
       isSideBarOpen: "sideBarState",
     }),
-    ...mapState(useVocabCardStore, {
+    ...mapState(usePiniaStore.useVocabCardStore, {
       isVocabCardOpen: "getIsVocabCardOpen",
     }),
-    ...mapState(useCoverStore, {
+    ...mapState(usePiniaStore.useCoverStore, {
       coverContent: "getCoverContent",
     }),
   },
   methods: {
-    ...mapActions(useSidebarStore, ["toggleSideBarOpen"]),
-    ...mapActions(useVocabCardStore, ["setIsVocabCardOpen"]),
-    ...mapActions(useCoverStore, ["getCoverContentHTTP"]),
+    ...mapActions(usePiniaStore.useSidebarStore, ["toggleSideBarOpen"]),
+    ...mapActions(usePiniaStore.useVocabCardStore, ["setIsVocabCardOpen"]),
+    ...mapActions(usePiniaStore.useCoverStore, ["getCoverContentHTTP"]),
   },
   async created() {
     await this.getCoverContentHTTP();

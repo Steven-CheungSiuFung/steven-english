@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { httpGetVocabs } from "../utils/requests";
 
-export default defineStore("vocabs", {
+export const useVocabsStore = defineStore("vocabs", {
   state: () => ({
     vocabsList: [],
     isVocabsError: false,

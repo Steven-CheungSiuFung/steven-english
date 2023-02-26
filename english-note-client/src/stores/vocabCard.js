@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export default defineStore("vocabCard", {
+export const useVocabCardStore = defineStore("vocabCard", {
   state: () => ({
     isVocabCardOpen: false,
     cardContent: {
