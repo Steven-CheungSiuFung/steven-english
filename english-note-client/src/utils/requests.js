@@ -25,3 +25,21 @@ export const httpGetCoverContent = async () => {
     throw new Error("httpGetCoverContent failed");
   }
 };
+
+export const httpAddNewVocab = async (form) => {
+  try {
+    const result = await fetch(`${API_URL}/vocabs/addNewVocab`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
+    if (result.ok) {
+      return { ok: result.ok };
+    }
+  } catch (error) {
+    console.log("httpAddNewVocab Error", error);
+    throw new Error("httpAddNewVocab failed");
+  }
+};

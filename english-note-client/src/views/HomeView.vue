@@ -10,9 +10,9 @@
         <p v-for="item in coverContent" class="cover-content">{{ item }}</p>
       </div>
       <div
-        v-show="isVocabCardOpen"
+        v-show="isVocabCardOpen || isAddVocabDialogOpen"
         class="card-bg"
-        @click.prevent="setIsVocabCardOpen(false)"
+        @click.prevent="closeDialog()"
       ></div>
     </div>
   </div>
@@ -45,6 +45,7 @@ export default {
     }),
     ...mapState(usePiniaStore.useVocabCardStore, {
       isVocabCardOpen: "getIsVocabCardOpen",
+      isAddVocabDialogOpen: "getIsAddVocabDialogOpen",
     }),
     ...mapState(usePiniaStore.useCoverStore, {
       coverContent: "getCoverContent",
@@ -52,8 +53,15 @@ export default {
   },
   methods: {
     ...mapActions(usePiniaStore.useSidebarStore, ["toggleSideBarOpen"]),
-    ...mapActions(usePiniaStore.useVocabCardStore, ["setIsVocabCardOpen"]),
+    ...mapActions(usePiniaStore.useVocabCardStore, [
+      "setIsVocabCardOpen",
+      "setIsAddVocabDialogOpen",
+    ]),
     ...mapActions(usePiniaStore.useCoverStore, ["getCoverContentHTTP"]),
+    closeDialog() {
+      this.setIsVocabCardOpen(false);
+      this.setIsAddVocabDialogOpen(false);
+    },
   },
   async created() {
     await this.getCoverContentHTTP();
