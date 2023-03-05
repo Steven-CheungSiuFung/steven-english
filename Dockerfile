@@ -5,10 +5,10 @@ WORKDIR /app
 COPY package*.json ./
 
 COPY english-note-client/package*.json english-note-client/
-RUN npm run install-client --only=production
+RUN npm run install-client --omit=dev
 
 COPY english-note-server/package*.json english-note-server/
-RUN npm run install-server --only=production
+RUN npm run install-server --omit=dev
 
 COPY english-note-client/ english-note-client/
 RUN npm run build --prefix english-note-client
